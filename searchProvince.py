@@ -34,9 +34,15 @@ text = '''京
 滇
 川'''
 
+provinceArray = ['@\"' + item + '\"' for item in text.split('\n')]
 separator = ',' 
-newText = separator.join(text.split('\n') )
-
-
+newText = separator.join(provinceArray)
 
 print newText
+
+cityCode =  'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+cityCodeArray = re.findall(r'[A-Z]', cityCode)
+iOScityCodeArray = ['@\"' + item + '\"' for item in cityCodeArray]
+copyText = separator.join(iOScityCodeArray)
+print copyText
