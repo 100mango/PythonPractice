@@ -35,6 +35,7 @@ class Node:
 		else:
 			return node
 
+	#遍历二叉树
 	def preorder(self,node):
 		if node is not None:
 			print node.data
@@ -53,6 +54,17 @@ class Node:
 			self.postorder(node.right)
 			print node.data
 
+def compareTwoTree(treeOne,treeTwo):
+	if treeOne is None and treeTwo is None:
+		return True
+	elif treeOne is None or treeTwo is None:
+		return False
+	elif treeOne.data != treeTwo.data:
+		return False
+	else:# data已经相等
+		leftResult = compareTwoTree(treeOne.left, treeTwo.left)
+		rightResult = compareTwoTree(treeOne.right, treeTwo.right)
+		return (leftResult and rightResult)
 
 root = Node(8)
 root.insert(3)
@@ -64,9 +76,20 @@ root.insert(7)
 root.insert(14)
 root.insert(13)
 
+rootTwo = Node(8)
+rootTwo.insert(3)
+rootTwo.insert(10)
+rootTwo.insert(1)
+rootTwo.insert(6)
+rootTwo.insert(4)
+rootTwo.insert(7)
+rootTwo.insert(14)
+rootTwo.insert(12)
 #print root.find(7, root)
 
 #root.preorder(root)
 #root.inorder(root)
-root.postorder(root)
+#root.postorder(root)
+
+print compareTwoTree(root, rootTwo)
 
