@@ -23,17 +23,35 @@ class Node:
 				if self.right is None:
 					self.right = Node(data)
 				else:
-					self.right = Node(data)
+					self.right.insert(data)
 
 	def find(self,data,node):
 		if node is None:
 			return None
 		elif data < node.data:
-			return node.find(data,node.left)
+			return self.find(data,node.left)
 		elif data > node.data:
-			return node.find(data,node.right)
+			return self.find(data,node.right)
 		else:
-		    return node
+			return node
+
+	def preorder(self,node):
+		if node is not None:
+			print node.data
+			self.preorder(node.left)
+			self.preorder(node.right)
+
+	def inorder(self,node):
+		if node is not None:
+			self.inorder(node.left)
+			print node.data
+			self.inorder(node.right)
+
+	def postorder(self,node):
+		if node is not None:
+			self.postorder(node.left)
+			self.postorder(node.right)
+			print node.data
 
 
 root = Node(8)
@@ -46,6 +64,9 @@ root.insert(7)
 root.insert(14)
 root.insert(13)
 
-findedNode =  root.find(7, root)
-#print findedNode.data
-print root.find(8, root)
+#print root.find(7, root)
+
+#root.preorder(root)
+#root.inorder(root)
+root.postorder(root)
+
