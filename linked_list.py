@@ -45,15 +45,15 @@ class linkedList:
 		currentNode = self.headNode
 		previousNode = None
 
-		while currentNode is not  None:
+		while currentNode is not None:
+
 			if currentNode.data == data:
 				if previousNode is not None:
 					previousNode.nextNode = currentNode.nextNode
 				else: #如果是头结点 则直接将头结点指向下一个
 					self.headNode = currentNode.nextNode
-			else:
-				previousNode = currentNode
-				currentNode = currentNode.nextNode
+			previousNode = currentNode
+			currentNode = currentNode.nextNode
 
 linkedList = linkedList()
 linkedList.insert(Node(1))
@@ -62,8 +62,9 @@ linkedList.insert(Node(12))
 linkedList.insert(Node(5))
 linkedList.insert(Node(8))
 
-#linkedList.printList()
+linkedList.printList()
 linkedList.delete(12)
+
 linkedList.printList()
 
 
