@@ -62,10 +62,34 @@ linkedList.insert(Node(12))
 linkedList.insert(Node(5))
 linkedList.insert(Node(8))
 
-linkedList.printList()
-linkedList.delete(12)
+#linkedList.printList()
+#linkedList.delete(12)
+#linkedList.printList()
+
+
+#剑指offer 面试题5 从尾到头打印链表
+def printListFromTail(linked_list):
+	stack = []
+	if linked_list is not None:
+		node = linked_list.headNode
+		while node is not None:
+			stack.append(node.data)
+			node = node.nextNode
+		while len(stack) > 0 :
+			print stack.pop()
+
+def printListFromTailRecursively(linked_list):
+	if linked_list.headNode is None:
+		print headNode is None
+	if linked_list.nextNode is not None:
+		printListFromTailRecursively(linked_list.nextNode)
+	print linked_list.data
+		
 
 linkedList.printList()
+printListFromTail(linkedList)
+printListFromTail(linkedList)
+	
 
 
 
