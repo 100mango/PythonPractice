@@ -66,6 +66,22 @@ def compareTwoTree(treeOne,treeTwo):
 		rightResult = compareTwoTree(treeOne.right, treeTwo.right)
 		return (leftResult and rightResult)
 
+
+# @param preorder, a list of integers
+# @param inorder, a list of integers
+# @return a tree node
+#leet code Construct Binary Tree from Preorder and Inorder Traversal
+
+def bulidTreeWithPreorderAndInorder(preorder,inorder):
+	if preorder is None:
+		return None
+	else:
+		rootNode = Node(preorder[0])
+		rootIndex = inorder.index(preorder[0])
+		rootNode.left = bulidTreeWithPreorderAndInorder(preorder[1:rootIndex +1 ], inorder[:rootIndex]) #前序遍历序列的根为第一个，随后跟着的是左子树。所以只需知道左子树数量即可获取前序遍历序列的左子树
+		rootNode.right = bulidTreeWithPreorderAndInorder(preorder[rootIndex +1: ], inorder[rootIndex + 1:])
+		return rootNode
+
 root = Node(8)
 root.insert(3)
 root.insert(10)
