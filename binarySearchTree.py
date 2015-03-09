@@ -82,6 +82,31 @@ def bulidTreeWithPreorderAndInorder(preorder,inorder):
 		rootNode.right = bulidTreeWithPreorderAndInorder(preorder[rootIndex +1: ], inorder[rootIndex + 1:])
 		return rootNode
 
+# list slice for inorder and postorder will cost a lot of memory
+# Definition for a  binary tree node
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+''' 在Leetcode上的写法
+class Solution:
+    # @param preorder, a list of integers
+    # @param inorder, a list of integers
+    # @return a tree node
+    def buildTree(self, preorder, inorder):
+        if inorder is None or len(inorder) == 0:
+            return None
+        else:
+            rootNodeValue = preorder.pop(0)
+		    rootNode = TreeNode(rootNodeValue)
+		    rootIndex = inorder.index(rootNodeValue)
+		    rootNode.left = self.buildTree(preorder, inorder[:rootIndex]) 
+		    rootNode.right = self.buildTree(preorder, inorder[rootIndex + 1:])
+		    return rootNode
+'''
+
 root = Node(8)
 root.insert(3)
 root.insert(10)
