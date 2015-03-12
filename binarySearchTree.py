@@ -62,12 +62,11 @@ class Node:
 			print node.data
 			self.inorder(node.right)
 
-'''
-前序和中序都是非常简单的，当遇到一个非空的根结点时，打印其数据（如果是前序遍历），并将其压栈，
-然后递归地（这里用循环来模拟递归）处理其左子结点；
-当没有左子结点时，从栈中弹出之前遇到的某个根结点（它没有左子结点，或者左子结点已经处理完毕，需要再处理右子结点），
-打印数据（如果是中序遍历），然后继续处理右子结点。
-'''
+#前序和中序都是非常简单的，当遇到一个非空的根结点时，打印其数据（如果是前序遍历），并将其压栈，
+#然后递归地（这里用循环来模拟递归）处理其左子结点；
+#当没有左子结点时，从栈中弹出之前遇到的某个根结点（它没有左子结点，或者左子结点已经处理完毕，需要再处理右子结点），
+#打印数据（如果是中序遍历），然后继续处理右子结点。
+
 	def inorderInteratively(self,node):
 		if node is None:
 			return None
@@ -88,6 +87,38 @@ class Node:
 			self.postorder(node.left)
 			self.postorder(node.right)
 			print node.data
+
+#双栈法后序遍历：
+#做的是反向的先序遍历。亦即遍历的顺序是：节点 -> 右子树 -> 左子树。
+#这生成的是后根遍历的逆序输出。使用第二个栈，再执行一次反向输出即可得到所要的结果。
+
+#步骤：
+#将根节点压入第一个栈
+#从第一个栈中弹出一个元素，压入第二个栈
+#然后分别将该节点的左右孩子压入第一个栈
+#重复步骤2和步骤3直到第一个栈为空
+#执行结束，第二个栈中就保存了所有节点的后序遍历输出结果。依次将元素从第二个栈中弹出即可。
+	def postorderInteratively(self,node):
+		if node is None:
+			return None
+		else:
+			stackOne = []
+			stackTwo = []
+			stackOne.append(node)
+			while len(stackOne) > 0:
+				node = stackOne.pop()
+				stackTwo.append(node)
+				if node.left is not None:
+					stackOne.append(node.left)
+				if node.right is not None:
+					stackOne.append(node.right)
+			while len(stackTwo) > 0:
+				node = stackTwo.pop()
+				print node.data
+
+
+
+
 
 def compareTwoTree(treeOne,treeTwo):
 	if treeOne is None and treeTwo is None:
@@ -165,11 +196,12 @@ rootTwo.insert(12)
 
 #root.preorder(root)
 #root.preorderInteratively(root)
-root.inorder(root)
-root.inorderInteratively(root)
-#root.postorder(root)
+#root.inorder(root)
+#root.inorderInteratively(root)
+root.postorder(root)
+root.postorderInteratively(root)
 
-print compareTwoTree(root, rootTwo)
 
-root.preorderInteratively(root)
+#print compareTwoTree(root, rootTwo)
+
 
