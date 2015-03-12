@@ -6,7 +6,7 @@ def quickSort(array):
 	equal = []
 	greatter = []
 
-	if len(array) < 1:
+	if len(array) <= 1:
 		return array
 	else:
 		pivot = array[0]    #random.choice(array) 更好

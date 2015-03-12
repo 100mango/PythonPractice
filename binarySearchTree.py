@@ -42,11 +42,32 @@ class Node:
 			self.preorder(node.left)
 			self.preorder(node.right)
 
+	def preorderInteratively(self,node):
+		if node is None:
+			return None
+		else:
+			stack = []
+			stack.append(node)
+			while len(stack) > 0:
+				node = stack.pop
+				print node.data
+				if node.right is not None:
+					stack.append(node.right) #这里需要主要 利用栈先进后出的特性来模拟递归。 后访问的右节点先进
+				if node.left is not None:
+					stack.append(node.left)
+
 	def inorder(self,node):
 		if node is not None:
 			self.inorder(node.left)
 			print node.data
 			self.inorder(node.right)
+
+	def inorderInteratively(self,node):
+		if node is None:
+			return None
+		else:
+			stack = []
+
 
 	def postorder(self,node):
 		if node is not None:
@@ -128,9 +149,11 @@ rootTwo.insert(14)
 rootTwo.insert(12)
 #print root.find(7, root)
 
-#root.preorder(root)
+root.preorder(root)
 #root.inorder(root)
 #root.postorder(root)
 
 print compareTwoTree(root, rootTwo)
+
+root.preorderInteratively(root)
 
