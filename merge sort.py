@@ -18,7 +18,7 @@ def mergeSort(array):
 	if len(array) <= 1:
 		return array
 
-	middle = int(len(array)/2)
+	middle = len(array)//2
 	leftArray = mergeSort(array[:middle])   #归并排序是一个分治算法  递归自顶向下求解
 	rightArray = mergeSort(array[middle:])
 

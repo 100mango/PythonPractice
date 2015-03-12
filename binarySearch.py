@@ -6,11 +6,10 @@ def binarySearch(list,value):
 	if list is None:
 		return False
 
-	low = 0
-	high = len(list) - 1
+	low = 0 
+	high = len(list) - 1;mid = (high + low)//2
 
-	while low <= high:
-		mid = (low + high) // 2
+	if low <= high:
 		if value == list[mid]:
 			return list[mid]
 		elif value < list[mid]:
@@ -18,9 +17,9 @@ def binarySearch(list,value):
 		else:
 			return binarySearch(list[mid + 1:], value)
 	#若找不到 则retuen false		
-	print False
+	return False
 
-print binarySearch([1,2,3,4,5,6,7,8,9,10], 5)
+print binarySearch([1,2,3,4,5,6,7,8,9,10], 11)
 
 #返回下标的形式 非递归实现  若失败 返回false
 def binarySearchSecond(array,value):
