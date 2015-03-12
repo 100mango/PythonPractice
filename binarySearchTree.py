@@ -49,7 +49,7 @@ class Node:
 			stack = []
 			stack.append(node)
 			while len(stack) > 0:
-				node = stack.pop
+				node = stack.pop()
 				print node.data
 				if node.right is not None:
 					stack.append(node.right) #这里需要主要 利用栈先进后出的特性来模拟递归。 后访问的右节点先进
@@ -62,11 +62,25 @@ class Node:
 			print node.data
 			self.inorder(node.right)
 
+'''
+前序和中序都是非常简单的，当遇到一个非空的根结点时，打印其数据（如果是前序遍历），并将其压栈，
+然后递归地（这里用循环来模拟递归）处理其左子结点；
+当没有左子结点时，从栈中弹出之前遇到的某个根结点（它没有左子结点，或者左子结点已经处理完毕，需要再处理右子结点），
+打印数据（如果是中序遍历），然后继续处理右子结点。
+'''
 	def inorderInteratively(self,node):
 		if node is None:
 			return None
 		else:
 			stack = []
+			while node or stack:
+				if node: #不断深入
+					stack.append(node)
+					node = node.left
+				else: #处理节点
+					node = stack.pop()
+					print node.data
+					node = node.right
 
 
 	def postorder(self,node):
@@ -149,8 +163,10 @@ rootTwo.insert(14)
 rootTwo.insert(12)
 #print root.find(7, root)
 
-root.preorder(root)
-#root.inorder(root)
+#root.preorder(root)
+#root.preorderInteratively(root)
+root.inorder(root)
+root.inorderInteratively(root)
 #root.postorder(root)
 
 print compareTwoTree(root, rootTwo)
