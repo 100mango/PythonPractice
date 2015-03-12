@@ -71,5 +71,36 @@ class Solution:
     		return low   #退出递归的原因是 low > high 此时的Low 即为下标 
 
 
+'''
+Suppose a sorted array is rotated at some pivot unknown to you beforehand.
+
+(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+
+Find the minimum element.
+
+You may assume no duplicate exists in the array.
+'''
+
+class Solution2:
+    # @param num, a list of integer
+    # @return an integer
+    def findMin(self, num):
+
+    	left = 0;
+    	right = len(num) - 1
+
+    	while num[left] > num[right]:
+    		mid = (left + right)//2
+    		if num[mid] >= num[left]:   #需要注意边界条件 大于等于 有可能mid = left
+    			left = mid + 1
+    		else: # num[mid] <num[right]:
+    			right = mid
+
+    	return num[left]
+
+
+        
+
+
 
 
