@@ -92,6 +92,30 @@ printListFromTail(linkedList)
 	
 
 
+#leetcode
+#Sort a linked list using insertion sort.
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+#普通插入排序：
+def insertion_sort(array):
+	for i in range(1,len(array)): #假设第一个已经排好,从第二个开始往前插入
+		temp = array[i]
+		j = i -1
+		while j >= 0 and array[j] > temp:
+			array[j + 1] = array[j]
+			j = j - 1
+		array[j+1] = temp    #需要加1 因为循环最后-1
+
+
+
+class Solution:
+    # @param head, a ListNode
+    # @return a ListNode
+    def insertionSortList(self, head):
 
 
 
