@@ -83,7 +83,7 @@ You may assume no duplicate exists in the array.
 class Solution2:
     # @param num, a list of integer
     # @return an integer
-    def findMin(self, num):
+    def findMin(self, num): #想法就是不断让Left移动，直到到达最小的位置
 
     	left = 0;
     	right = len(num) - 1
@@ -112,7 +112,25 @@ Find the minimum element.
 The array may contain duplicates.
 '''
 
+#假设原数组是{1,2,3,3,3,3,3}，
+#那么旋转之后有可能是{3,3,3,3,3,1,2}，或者{3,1,2,3,3,3,3}，
+#这样的我们判断左边缘和中心的时候都是3，我们并不知道应该截掉哪一半。
+#解决的办法只能是对边缘移动一步，直到边缘和中间不在相等或者相遇，这就导致了会有不能切去一半的可能。所以最坏情况就会出现每次移动一步，总共移动n此，算法的时间复杂度变成O(n)
+class Solution3:
+    # @param num, a list of integer
+    # @return an integer
+    def findMin(self, num):
+        left = 0;
+        right = len(num) - 1
 
-
-
+        while left < right and num[left] >= num[right]: #主要left不能大于right 例如lenth为1的情况
+            mid = (left + right)//2
+            if num[mid] > num[left]: 
+                left = mid + 1
+            elif num[mid] < num[right] : # num[mid] <num[right]:
+                right = mid
+            else: #前进一步
+                left = left + 1
+        return num[left]
+    
 
