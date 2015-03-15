@@ -116,6 +116,27 @@ class Solution:
     # @param head, a ListNode
     # @return a ListNode
     def insertionSortList(self, head):
+    	if head is None or head.next is None:
+    		return head
+    	else:
+    		dummy = ListNode(0)
+    		dummy.next = head
+    		currentNode = head
+    		while currentNode.next:
+    			if currentNode.next.val > currentNode.val:
+    				currentNode = currentNode.next
+    			else: #寻找合适位置插入
+    				previousNode = dummy
+    				while previousNode.next.val < currentNode.next.val:
+    					previousNode = previousNode.next
+    				temp = currentNode.next
+    				currentNode.next = temp.next
+    				temp.next = previousNode.next
+    				previousNode.next = temp
+    		return dummy.next
+
+
+
 
 
 
