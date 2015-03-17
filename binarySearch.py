@@ -134,3 +134,29 @@ class Solution3:
         return num[left]
     
 
+
+#Implement pow(x, n).
+class Solution4:
+    # @param x, a float
+    # @param n, a integer
+    # @return a float
+    def pow(self, x, n):
+        if x == 0:
+            return 0
+        else:
+            if n == 0:
+                return 1
+            elif n == 1:
+                return x
+            elif n < 0:
+                return 1/self.pow(x,-n)
+            else:
+                if n % 2 == 1:
+                    return self.pow(x*x,n//2)*x
+                else:
+                    return self.pow(x*x,n//2)
+            
+            
+        
+
+
