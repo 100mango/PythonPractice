@@ -135,8 +135,45 @@ class Solution:
     				previousNode.next = temp
     		return dummy.next
 
+'''
+Given a linked list, remove the nth node from the end of list and return its head.
 
+For example,
 
+   Given linked list: 1->2->3->4->5, and n = 2.
 
+   After removing the second node from the end, the linked list becomes 1->2->3->5.
+Note:
+Given n will always be valid.
+Try to do this in one pass.
+'''
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    # @return a ListNode
+    def removeNthFromEnd(self, head, n):
+        #我们希望指向的是倒数第N+1个节点，这样直接p.next = p.next.next即可完成删除，
+        #但是若N刚好是链表长度，那就是头结点，需要引入一个假节点
+        #需要指向倒数第N+1个节点，所以前面的指针需要指向顺序第N+1个
+        dummy = ListNode(0)
+        dummy.next = head
+        first =dummy
+        second = dummy
+        
+        for i in range(0,n):
+            first = first.next
+        while first.next is not None:
+            first = first.next
+            second = second.next
+        second.next = second.next.next
+        return dummy.next
+            
+            
+            
+        
 
