@@ -135,6 +135,11 @@ class Solution:
     				previousNode.next = temp
     		return dummy.next
 
+
+
+
+
+
 '''
 Given a linked list, remove the nth node from the end of list and return its head.
 
@@ -172,8 +177,25 @@ class Solution:
             second = second.next
         second.next = second.next.next
         return dummy.next
-            
-            
+          
+
+#Linked List Cycle   leetcode
+
+class Solution:
+    # @param head, a ListNode
+    # @return a boolean
+    def hasCycle(self, head):
+        if head is None:
+            return False
+        fast = head
+        slow = head
+        while fast is not None and fast.next is not None:
+            fast = fast.next.next
+            slow = slow.next
+            if fast is slow:
+                return True
+        return False
+        
             
         
 
