@@ -88,7 +88,6 @@ def printListFromTailRecursively(linked_list):
 
 linkedList.printList()
 printListFromTail(linkedList)
-printListFromTail(linkedList)
 	
 
 
@@ -197,5 +196,26 @@ class Solution:
         return False
         
             
-        
+#反转链表
+def reverseLinkedList(head):
+	if head is None:
+		return None
+
+	previousNode = None
+	currentNode = head
+	while currentNode is not None:
+		nextNode = currentNode.nextNode
+		currentNode.next = previousNode
+		previousNode = currentNode
+		currentNode = nextNode
+
+	return previousNode
+
+
+
+
+
+
+
+
 
