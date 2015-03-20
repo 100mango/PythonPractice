@@ -1,5 +1,4 @@
-
-#coding = utf-8
+#coding=utf-8
 
 def merge(leftArray,rightArray):
 
@@ -14,16 +13,32 @@ def merge(leftArray,rightArray):
 
 	return mergedArray
 
+def mergeRecursively(leftArray,rightArray):
+    if len(leftArray) == 0 :
+        return rightArray
+    elif len(rightArray) == 0:
+        return leftArray
+
+    mergedArray = []
+    if leftArray[0] < rightArray[0]:
+        mergedArray.append(leftArray.pop(0))
+        mergedArray.extend(mergeRecursively(leftArray,rightArray))
+    else:
+        mergedArray.append(rightArray.pop(0))
+        mergedArray.extend(mergeRecursively(leftArray,rightArray))
+    return mergedArray
+ 
 def mergeSort(array):
 
 	if len(array) <= 1:
 		return array
 
 	middle = len(array)//2
-	leftArray = mergeSort(array[:middle])   #归并排序是一个分治算法  递归自顶向下求解
-	rightArray = mergeSort(array[middle:])
-
-	return merge(leftArray, rightArray)
+	leftArray = mergeSort(array[:middle])  #归并排序是一个分治算法  递归自顶向下求解
+	rightArray = mergeSort(array[middle:]);
+    return mergeRecursively(leftArray, rightArray)
+	#return merge(leftArray, rightArray)
+print mergeSort([10,9,8,7,6,5,4,3,2,1])
 
 
 #leetcode 
