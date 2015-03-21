@@ -190,8 +190,8 @@ rootTwo.insert(1)
 rootTwo.insert(6)
 rootTwo.insert(4)
 rootTwo.insert(7)
-rootTwo.insert(14)
-rootTwo.insert(12)
+#rootTwo.insert(14)
+#rootTwo.insert(12)
 #print root.find(7, root)
 
 #root.preorder(root)
@@ -200,8 +200,32 @@ rootTwo.insert(12)
 #root.inorderInteratively(root)
 root.postorder(root)
 root.postorderInteratively(root)
-
-
 #print compareTwoTree(root, rootTwo)
+
+#剑指offer 18.树的子结构
+def doesTreeOneHasTreeTwo(node1,node2):
+	if node2 is None:
+		return True
+	if node1 is None:
+		return False
+	if node1.data != node2.data:
+		return False
+	else:
+		return doesTreeOneHasTreeTwo(node1.left, node2.left) and\
+		doesTreeOneHasTreeTwo(node1.right, node2.right)
+
+def hasSubTree(node1,node2):
+	result = False
+	if node1 is not None and node2 is not None:
+		if node1.data == node2.data:
+			result = doesTreeOneHasTreeTwo(node1, node2)
+		if result is False:
+			result = hasSubTree(node1.left, node2)
+		if result is False:
+			result = hasSubTree(node1.right, node2)
+	return result
+
+print hasSubTree(root, rootTwo)
+
 
 
