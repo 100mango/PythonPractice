@@ -228,7 +228,7 @@ def hasSubTree(node1,node2):
 print hasSubTree(root, rootTwo)
 
 
-#leetcode 数的深度
+#leetcode 树的深度
 class Solution:
     # @param root, a tree node
     # @return an integer
@@ -238,3 +238,22 @@ class Solution:
         else:
             return max(self.maxDepth(root.left),self.maxDepth(root.right)) + 1
 
+#leetcode Symmetric Tree 
+class Solution:
+    # @param root, a tree node
+    # @return a boolean
+    def isSymmetric(self, root):
+        if root is None:
+            return True
+        else:
+            return self.isLeftAndRightSysmmetric(root.left,root.right)
+         
+    def isLeftAndRightSysmmetric(self,left,right):
+        if left is None and right is None:
+            return True
+        elif left is None or right is None:
+            return False
+        elif left.val != right.val:
+            return False
+        else:
+            return (self.isLeftAndRightSysmmetric(left.left,right.right) and self.isLeftAndRightSysmmetric(left.right,right.left))
