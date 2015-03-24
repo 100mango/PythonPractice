@@ -36,7 +36,7 @@ class binaryHeap():
 			else:
 				break 
 			index = minChindIndex
-			
+
 		self.heapList[index] = lastElement
 		return min
 
@@ -48,6 +48,37 @@ class binaryHeap():
 				return index*2 + 1
 			else:
 				return index
+
+	def percolateUp(self,index):
+		while index//2 > 0: #从index 不断上滤
+			if self.heapList[index] < self.heapList[index//2]:
+				temp = self.heapList[index//2]
+				self.heapList[index//2] = self.heapList[index]
+				self.heapList[index] = temp
+			index = index//2
+
+
+	def insertTwo(self,value): #易懂交换版本
+		self.heapList.append(value)
+		self.currentSize = self.currentSize + 1
+		self.percolateUp(self.currentSize)
+
+	def percolatwDown(self,index):
+		while index*2 <= self.currentSize:
+			minIndex = self.minIndex(index)
+			if self.heapList[index] > self.heapList[minIndex]:
+				temp = self.heapList[minIndex]
+				self.heapList[minIndex] = self.heapList[index]
+				self.heapList[index] = temp
+			index = minIndex
+
+	def deleteMinTwo(self):
+		min = self.heapList[1]
+		self.heapList[1] = self.heapList[self.currentSize]
+		self.heapList.pop()
+		self.currentSize = self.currentSize - 1
+		self.percolatwDown(1)
+		return min
 
 
 
@@ -61,4 +92,6 @@ binaryHeap.insert(5)
 binaryHeap.insert(4)
 
 print binaryHeap.heapList
-print binaryHeap.deleteMin()
+print binaryHeap.deleteMinTwo()
+print binaryHeap.deleteMinTwo()
+print binaryHeap.heapList
