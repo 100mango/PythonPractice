@@ -95,3 +95,5 @@ print binaryHeap.heapList
 print binaryHeap.deleteMinTwo()
 print binaryHeap.deleteMinTwo()
 print binaryHeap.heapList
+
+
