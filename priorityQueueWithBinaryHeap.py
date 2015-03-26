@@ -80,9 +80,22 @@ class binaryHeap():
 		self.percolatwDown(1)
 		return min
 
+	def buildHeap(self,array):
+		self.currentSize = len(array)
+		self.heapList.extend(array)
+		i = len(array)//2
+		while i > 0:
+			print i
+			self.percolatwDown(i)
+			i = i - 1
+		print 'done'
+
 
 
 binaryHeap = binaryHeap()
+binaryHeap.buildHeap([10,9,8,7,6,5,4])
+
+'''
 binaryHeap.insert(10)
 binaryHeap.insert(9)
 binaryHeap.insert(8)
@@ -90,6 +103,7 @@ binaryHeap.insert(7)
 binaryHeap.insert(6)
 binaryHeap.insert(5)
 binaryHeap.insert(4)
+'''
 
 print binaryHeap.heapList
 print binaryHeap.deleteMinTwo()
