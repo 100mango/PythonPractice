@@ -90,7 +90,45 @@ class binaryHeap():
 			i = i - 1
 		print 'done'
 
+#算法来自数据结构与算法分析 C语言描述 第二版 堆排序部分
+#通常堆是通过一维数组来实现的。在起始数组为0的情形中：
+#父节点i的左子节点在位置(2*i+1);
+#父节点i的右子节点在位置(2*i+2);
+	def maxIndex(self,heap,index,heapLength):
+		if index*2 + 2 > heapLength-1:
+			return index*2+1
+		else:
+			if heap[index*2+1] < heap[index*2+2]:
+				return index*2+2
+			else:
+				return index*2+1
 
+	def maxHeapPercolateDown(self,heap,index,heapLength):
+		while index*2+1 <= heapLength-1:
+			maxIndex = self.maxIndex(heap, index, heapLength)
+			if heap[index] < heap[maxIndex]:
+				temp = heap[index]
+				heap[index] = heap[maxIndex]
+				heap[maxIndex] = temp
+			index = maxIndex
+
+	def heapSort(self,array):
+		lenth = len(array)
+
+		i = lenth//2
+		while i >= 0:
+			self.maxHeapPercolateDown(array, i, lenth)
+			i = i - 1
+
+		i = lenth - 1
+		while i > 0:
+			temp = array[i]
+			array[i] = array[0]
+			array[0] = temp
+			self.maxHeapPercolateDown(array, 0, i) #第一次交换后 heap长度就已经是lenth-1了
+			i = i - 1
+
+		return array
 
 binaryHeap = binaryHeap()
 binaryHeap.buildHeap([10,9,8,7,6,5,4])
@@ -100,5 +138,7 @@ print binaryHeap.heapList
 print binaryHeap.deleteMinTwo()
 print binaryHeap.deleteMinTwo()
 print binaryHeap.heapList
+
+print binaryHeap.heapSort([10,9,8,7,110,100,90])
 
 
