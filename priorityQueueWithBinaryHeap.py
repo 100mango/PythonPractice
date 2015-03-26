@@ -41,13 +41,13 @@ class binaryHeap():
 		return min
 
 	def minIndex(self,index): 
-		if index*2 + 1 > self.currentSize:
+		if index*2 + 1 > self.currentSize: #只有右节点
 			return index*2
 		else:
 			if self.heapList[index*2] > self.heapList[index*2+1]:
 				return index*2 + 1
 			else:
-				return index
+				return index*2
 
 	def percolateUp(self,index):
 		while index//2 > 0: #从index 不断上滤
@@ -95,15 +95,6 @@ class binaryHeap():
 binaryHeap = binaryHeap()
 binaryHeap.buildHeap([10,9,8,7,6,5,4])
 
-'''
-binaryHeap.insert(10)
-binaryHeap.insert(9)
-binaryHeap.insert(8)
-binaryHeap.insert(7)
-binaryHeap.insert(6)
-binaryHeap.insert(5)
-binaryHeap.insert(4)
-'''
 
 print binaryHeap.heapList
 print binaryHeap.deleteMinTwo()
