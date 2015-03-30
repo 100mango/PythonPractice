@@ -68,6 +68,8 @@ class Solution:
 
 
 #leetcode Merge k Sorted Lists 
+#分治递归版 算法复杂度：T(k) = 2T(k/2)+O(n*k）由主定理得O(nklogk)
+#空间复杂度的话是递归栈的大小O(logk）
 class Solution:
     # @param a list of ListNode
     # @return a ListNode
@@ -102,3 +104,4 @@ class Solution:
         if l2 is not None:
             currentPointer.next = l2
         return dummy.next
+
