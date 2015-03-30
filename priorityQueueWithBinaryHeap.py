@@ -141,4 +141,24 @@ print binaryHeap.heapList
 
 print binaryHeap.heapSort([10,9,8,7,110,100,90])
 
+#leetcode Merge k Sorted Lists  堆版本
+class Solution:
+    # @param a list of ListNode
+    # @return a ListNode
+    def mergeKLists(self, lists):
+        heap = []
+        for listNode in lists:
+            if listNode is not None:
+                heap.append((listNode.val,listNode))
+        heapq.heapify(heap)
+        dummy = ListNode(0) 
+        current = dummy
+        while heap:
+            popItem = heapq.heappop(heap)
+            current.next = popItem[1]
+            current = current.next
+            if current.next is not None:
+                heapq.heappush(heap,(current.next.val,current.next))
+        return dummy.next
+        
 
