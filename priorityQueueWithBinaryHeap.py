@@ -116,12 +116,12 @@ class binaryHeap():
 		lenth = len(array)
 
 		i = lenth//2
-		while i >= 0:
+		while i >= 0: #建立最大堆
 			self.maxHeapPercolateDown(array, i, lenth)
 			i = i - 1
 
 		i = lenth - 1
-		while i > 0:
+		while i > 0: 
 			temp = array[i]
 			array[i] = array[0]
 			array[0] = temp
