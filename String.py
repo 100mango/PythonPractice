@@ -8,3 +8,8 @@ def replaceBlank(string):
 print replaceBlank('hello world')
 
 #leetcode Reverse Words in a String 
+class Solution:
+    # @param s, a string
+    # @return a string
+    def reverseWords(self, s):
+        return ' '.join(s.split()[::-1])
