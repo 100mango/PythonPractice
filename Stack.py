@@ -1,3 +1,5 @@
+#coding=utf-8
+
 #leetcode minStack
 class MinStack:
     def __init__(self):
@@ -26,3 +28,31 @@ class MinStack:
     def getMin(self):
         return self.minStack[-1]
         
+
+#剑指offer 面试题22：栈的压入，弹出序列：
+def isProperPopOrder(pushOrder,popOrder):
+
+    if pushOrder is None or popOrder is None or len(pushOrder) != len(popOrder) :
+        return False
+
+    stack = []
+    stack.append(pushOrder.pop(0))
+    while stack:
+        top = popOrder.pop(0)
+        while pushOrder and stack[-1] != top:
+            stack.append(pushOrder.pop(0))
+
+        if stack[-1] != top:
+            return False
+
+        stack.pop()
+        if len(pushOrder) > 0:
+            stack.append(pushOrder.pop(0))
+
+    return True
+
+
+print isProperPopOrder([1,2,3,4,5],[4,5,3,2,1])
+
+print isProperPopOrder(None,None)
+
