@@ -1,5 +1,6 @@
 #coding:utf-8
 
+#binary search tree 的实现
 class Node:
 
 	def __init__(self, data):
@@ -257,3 +258,29 @@ class Solution:
             return False
         else:
             return (self.isLeftAndRightSysmmetric(left.left,right.right) and self.isLeftAndRightSysmmetric(left.right,right.left))
+
+
+#leetcode Binary Tree Level Order Traversal 
+class Solution:
+    # @param root, a tree node
+    # @return a list of lists of integers
+    def levelOrder(self, root):
+        if root is None:
+            return []
+        
+        queue = []
+        queue.append(root)
+        lists =  []
+        while queue:
+            currentLevelList = []
+            copyQueue = queue[:]
+            for node in copyQueue:
+                currentLevelList.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+                queue.pop(0)
+            lists.append(currentLevelList)
+        
+        return lists
