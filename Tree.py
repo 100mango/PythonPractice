@@ -284,3 +284,37 @@ class Solution:
             lists.append(currentLevelList)
         
         return lists
+
+
+#剑指offer 面试题24：二叉搜索树的后序遍历序列
+
+def verifyBSTPostOrder(postorder):
+	if postorder is None:
+		return False
+	if len(postorder) <= 1:
+		return True
+
+	leftTreeindex = 0
+	while postorder[leftTreeindex] < postorder[-1]:
+		leftTreeindex = leftTreeindex + 1
+
+	for rightTreeIndex in range(leftTreeindex,len(postorder)-1):
+		if postorder[rightTreeIndex] < postorder[-1]:
+			return False
+
+	leftTreeBool = verifyBSTPostOrder(postorder[:leftTreeindex])
+	rightTreeBool = verifyBSTPostOrder(postorder[leftTreeindex:len(postorder)-1])
+
+	return leftTreeBool and rightTreeBool
+
+
+print str(verifyBSTPostOrder([5,7,6,9,11,10,8])) + 'BST'
+
+
+
+
+
+
+
+
+
