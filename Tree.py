@@ -311,7 +311,30 @@ def verifyBSTPostOrder(postorder):
 print str(verifyBSTPostOrder([5,7,6,9,11,10,8])) + 'BST'
 
 
-
+#leetcode Path Sum II
+class Solution:
+    # @param root, a tree node
+    # @param sum, an integer
+    # @return a list of lists of integers
+    def pathSum(self, root, sum):
+        
+        def searchPath(root,currentSum,pathList):
+            currentSum = currentSum + root.val
+            pathList.append(root.val)
+            if currentSum == sum and root.left is None and root.right is None:
+                lists.append(pathList)
+            else:
+                if root.left:
+                    searchPath(root.left,currentSum,pathList[:]) #需要注意这里，lists是可变的,因此传进去的时候需要做个拷贝
+                if root.right:
+                    searchPath(root.right,currentSum,pathList[:])
+                    
+        if root is None:
+            return []         
+        lists = []
+        currentSum = 0
+        searchPath(root,currentSum,[])
+        return lists
 
 
 
