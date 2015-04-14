@@ -336,8 +336,33 @@ class Solution:
         searchPath(root,currentSum,[])
         return lists
 
-
-
-
+#leetcode Path Sum
+class Solution:
+    # @param root, a tree node
+    # @param sum, an integer
+    # @return a boolean
+    def hasPathSum(self, root, sum):
+        
+        def searchPath(root,currentSum):
+            currentSum = currentSum + root.val
+            if root.left == None and root.right == None:
+                if currentSum == sum:
+                    return True
+                else:
+                    return False
+            else:
+                leftBool = False
+                rightBool = False
+                if root.left:
+                    leftBool = searchPath(root.left,currentSum)
+                if root.right:
+                    rightBool = searchPath(root.right,currentSum)
+                
+                return leftBool or rightBool
+                
+        if root is None:
+            return False
+        else:
+            return searchPath(root,0)
 
 
