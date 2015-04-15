@@ -212,6 +212,19 @@ def reverseLinkedList(head):
 	return previousNode
 
 
+#leetcode：Remove Duplicates from Sorted List
+class Solution:
+    # @param head, a ListNode
+    # @return a ListNode
+    def deleteDuplicates(self, head):
+        current = head
+        while current is not None:
+            next = current.next
+            while next is not None and current.val == next.val:
+                next = next.next
+            current.next = next
+            current = current.next
+        return head
 
 
 
