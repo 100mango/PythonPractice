@@ -33,5 +33,20 @@ class Solution:
                 columnBegin = columnBegin + 1
             
         return array
-            
+
+#leetcode:Permutations
+class Solution:
+    # @param num, a list of integer
+    # @return a list of lists of integers
+    def permute(self, num):
+        solutions = []
+        if num is None:
+            return []
+        if len(num) == 1:
+            return [num]
+        for i in range(len(num)):
+            for j in self.permute(num[:i]+num[i+1:]):
+                solutions.append([num[i]]+j)
+        return solutions
+                
         
