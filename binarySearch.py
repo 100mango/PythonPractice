@@ -29,12 +29,13 @@ def binarySearchSecond(array,value):
 
 	while low <= high:
 		mid = (low + high)//2
-		if value == array[mid]:
-			return mid
-		elif value < array[mid]:
-			high = mid - 1
-		else:
-			low = mid + 1
+        
+        if value < array[mid]:
+            high = mid - 1
+        elif value > array[mid]:
+            low = mid + 1
+        else:
+            return mid
 
 	return False
 

@@ -36,8 +36,8 @@ def mergeSort(array):
     middle = len(array)//2
     leftArray = mergeSort(array[:middle])
     rightArray = mergeSort(array[middle:])
-    return mergeRecursively(leftArray, rightArray)
-    #return merge(leftArray, rightArray)
+    #return mergeRecursively(leftArray, rightArray)
+    return merge(leftArray, rightArray)
 
 
 print mergeSort([10,9,8,7,6,5,4,3,2,1])
