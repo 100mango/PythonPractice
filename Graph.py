@@ -1,5 +1,6 @@
 #coding=utf-8
 
+#图 adjacency list
 class Vertex:
 
 	def __init__(self, key):
