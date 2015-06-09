@@ -48,12 +48,12 @@ class Graph:
 		else:
 			return None
 
-	def addEdge(self,from_vertex,to_vertex,weight = 0):
-		if from_vertex not in self.vertexs:
-			self.addVertex(from_vertex)
-		if to_vertex not in self.vertexs:
-			self.addVertex(to_vertex)
-		self.vertexs[from_vertex].addAdjacentVertex(self.vertexs[to_vertex],weight)
+	def addEdge(self,from_vertex_key,to_vertex_key,weight = 0):
+		if from_vertex_key not in self.vertexs:
+			self.addVertex(from_vertex_key)
+		if to_vertex_key not in self.vertexs:
+			self.addVertex(to_vertex_key)
+		self.vertexs[from_vertex_key].addAdjacentVertex(self.vertexs[to_vertex_key],weight)
 
 
 g = Graph()
@@ -71,6 +71,7 @@ g.addEdge(3,5,3)
 g.addEdge(4,0,1)
 g.addEdge(5,4,8)
 g.addEdge(5,2,1)
+
 for v in g:
 	for w in v.getAdjacencies():
 		print("( %s , %s )" % (v.id, w.id))
