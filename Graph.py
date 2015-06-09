@@ -6,9 +6,12 @@ class Vertex:
 	def __init__(self, key):
 		self.id = key
 		self.adjacentTo = {}
+		self.color = 'white'
+		self.distance = 0
+		self.predecessor = None
 
 	def __str__(self):
-		return str(self.id) + 'adjacentTo' + str([vertex.id for vertex in self.adjacentTo])
+		return str(self.id) + ' adjacentTo ' + str([vertex.id for vertex in self.adjacentTo]) + '\ncolor' + self.color
 
 	def addAdjacentVertex(self,vertex,weight = 0):
 		self.adjacentTo[vertex] = weight
@@ -60,7 +63,7 @@ g = Graph()
 for i in range(6):
 	g.addVertex(i)
 
-print g.vertexs
+#print g.vertexs
 
 g.addEdge(0,1,5)
 g.addEdge(0,5,2)
@@ -72,12 +75,26 @@ g.addEdge(4,0,1)
 g.addEdge(5,4,8)
 g.addEdge(5,2,1)
 
-for v in g:
-	for w in v.getAdjacencies():
-		print("( %s , %s )" % (v.id, w.id))
+
+#for v in g:
+#	for w in v.getAdjacencies():
+#		print("( %s , %s )" % (v.id, w.id))
+
+def bfs(graph,start):
+	vertexQueue = []
+	vertexQueue.append(start)
+	while vertexQueue:
+		currentVertex = vertexQueue.pop(0)
+		currentVertex.color = 'grey'
+		for neighbor in currentVertex.getAdjacencies():
+			if neighbor.color == 'white':
+				neighbor.distance = currentVertex.distance + 1
+				neighbor.predecessor = currentVertex
+				vertexQueue.append(neighbor)
+		currentVertex.color = 'black'
 
 
+bfs(g, g.getVertex(0))
 
-
-
-
+for vertex in g:
+	print vertex
